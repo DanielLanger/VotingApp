@@ -1,0 +1,10 @@
+<h1>Create a new Poll</h1>
+	<form action="/polls/" method="post">
+	{% csrf_token %}
+		Question: <input type="text" name="poll"><br />
+		Choice: <input type="text" name="choice1"><br />
+		Choice: <input type="text" name="choice2"><br />
+		Choice: <input type="text" name="choice3"><br />
+		<button onclick="copyText()">Add choice</button><br />
+		<input type="submit" value="Submit" />
+	</form>

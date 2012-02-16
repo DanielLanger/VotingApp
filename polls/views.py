@@ -4,10 +4,23 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render_to_response, get_object_or_404
 from django.template import RequestContext
 from django.core.urlresolvers import reverse
+from django.core.context_processors import csrf
 
 def index(request):
-    latest_poll_list = Poll.objects.all().order_by('-pub_date')[:5]
-    return render_to_response('polls/index.html', {'latest_poll_list': latest_poll_list})
+    if request.method=='GET' :
+        latest_poll_list = Poll.objects.all().order_by('-pub_date')[:5]
+        return render_to_response('polls/index.html', {'latest_poll_list': latest_poll_list})
+    elif request.method== 'POST' :
+    	newPoll=Poll(question=request.POST["poll"])
+    	newPoll.save()
+    	choice1=Choice(poll=newPoll, choice=request.POST["choice1"], votes=0)
+    	choice2=Choice(poll=newPoll, choice=request.POST["choice2"], votes=0)
+    	choice3=Choice(poll=newPoll, choice=request.POST["choice3"], votes=0)
+    	choice1.save()
+    	choice2.save()
+    	choice3.save()
+    	latest_poll_list = Poll.objects.all().order_by('-pub_date')[:5]
+        return HttpResponseRedirect('/')
     
 def detail(request, poll_id):
     p = get_object_or_404(Poll, pk=poll_id)
@@ -35,3 +48,9 @@ def vote(request, poll_id):
         # with POST data. This prevents data from being posted twice if a
         # user hits the Back button.
         return HttpResponseRedirect(reverse('polls.views.results', args=(p.id,)))
+        
+def new(request):
+	c={}
+	c.update(csrf(request))
+	return render_to_response('polls/new.html', c , context_instance=RequestContext(request))
+        
