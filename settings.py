@@ -1,4 +1,5 @@
 # Django settings for voting project.
+import os
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
@@ -104,6 +105,12 @@ ROOT_URLCONF = 'voting.urls'
 
 TEMPLATE_DIRS = (
   "/Users/Daniel/Documents/python/voting/polls/templates"
+)
+
+PROJECT_PATH = os.path.realpath(os.path.dirname(__file__))
+
+STATICFILES_DIRS = (
+    os.path.join(PROJECT_PATH, 'static'),
 )
 
 INSTALLED_APPS = (

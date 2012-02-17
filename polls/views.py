@@ -16,10 +16,16 @@ def index(request):
     	choice1=Choice(poll=newPoll, choice=request.POST["choice1"], votes=0)
     	choice2=Choice(poll=newPoll, choice=request.POST["choice2"], votes=0)
     	choice3=Choice(poll=newPoll, choice=request.POST["choice3"], votes=0)
+    	choice4=Choice(poll=newPoll, choice=request.POST["choice4"], votes=0)
+    	choice5=Choice(poll=newPoll, choice=request.POST["choice5"], votes=0)
+
     	choice1.save()
     	choice2.save()
     	choice3.save()
-    	latest_poll_list = Poll.objects.all().order_by('-pub_date')[:5]
+    	choice4.save()
+    	choice5.save()
+    	
+    	latest_poll_list = Poll.objects.all().order_by('-pub_date')[Poll.objects.count()-1]
         return HttpResponseRedirect('/')
     
 def detail(request, poll_id):

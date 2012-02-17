@@ -1,10 +1,30 @@
-<h1>Create a new Poll</h1>
-	<form action="/polls/" method="post">
+<h1>Create a new Poll</h1>		
+	<form id="myForm" action="/polls/" method="post">
 	{% csrf_token %}
-		Question: <input type="text" name="poll"><br />
-		Choice: <input type="text" name="choice1"><br />
-		Choice: <input type="text" name="choice2"><br />
-		Choice: <input type="text" name="choice3"><br />
-		<button onclick="copyText()">Add choice</button><br />
+		<p>Question: <input type="text" name="poll"></p>
+		<div id="Choices">
+		<p>Choice: <input type="text" name="choice1"></p>
+		<p>Choice: <input type="text" name="choice2"></p>
+		<p>Choice: <input type="text" name="choice3"></p>
+		<p>Choice: <input type="text" name="choice4"></p>
+		<p>Choice: <input type="text" name="choice5"></p>
+		</div>  
+		<a href="javascript:addOption();">Add option</a> <br />
 		<input type="submit" value="Submit" />
 	</form>
+	
+	<script> 
+        choiceNumber = 6; //The first option to be added is number 6 
+        function addOption() { 
+                var choices = document.getElementById("Choices"); 
+                var newChoice = document.createElement("input"); 
+                newChoice.name = "choice"+choiceNumber; 
+                newChoice.type = "text";
+                var p = document.createElement("p");
+                p.innerHTML = "Choice: ";
+            	choices.appendChild(p, newChoice);
+                p.appendChild(newChoice); 
+                choiceNumber++;
+
+        }
+	</script>
