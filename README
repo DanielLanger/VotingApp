@@ -1,1 +1,1 @@
-A simple voting app using Django. Allows a person to vote on who they want to win the GOP presidential race!
+A simple voting app using Django. Allows users to create new polls and vote on existing ones. 
