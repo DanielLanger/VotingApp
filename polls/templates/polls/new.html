@@ -3,22 +3,21 @@
 	{% csrf_token %}
 		<p>Question: <input type="text" name="poll"></p>
 		<div id="Choices">
-		<p>Choice: <input type="text" name="choice1"></p>
-		<p>Choice: <input type="text" name="choice2"></p>
-		<p>Choice: <input type="text" name="choice3"></p>
-		<p>Choice: <input type="text" name="choice4"></p>
-		<p>Choice: <input type="text" name="choice5"></p>
+		<p>Choice: <input type="text" name='choice1'></p>
+		<p>Choice: <input type="text" name='choice2'></p>
+		<p>Choice: <input type="text" name='choice3'></p>
+		<p>Choice: <input type="text" name='choice4'></p>
 		</div>  
 		<a href="javascript:addOption();">Add option</a> <br />
 		<input type="submit" value="Submit" />
 	</form>
 	
 	<script> 
-        choiceNumber = 6; //The first option to be added is number 6 
+        choiceNumber= 5; //The first option to be added is number 5 
         function addOption() { 
                 var choices = document.getElementById("Choices"); 
                 var newChoice = document.createElement("input"); 
-                newChoice.name = "choice"+choiceNumber; 
+                newChoice.name = "choice" + choiceNumber.toString();
                 newChoice.type = "text";
                 var p = document.createElement("p");
                 p.innerHTML = "Choice: ";
